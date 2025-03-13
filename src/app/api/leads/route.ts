@@ -9,8 +9,6 @@ import { LeadStatus } from "@/lib/types";
 
 // GET /api/leads - Get all leads
 export async function GET(request: NextRequest) {
-  // In a real app, you would check authentication here
-
   try {
     const leads = getAllLeads();
     return NextResponse.json(leads);
@@ -27,11 +25,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-
-    // In a real app, you would validate the data here
-
     const newLead = createLead(data);
-
     return NextResponse.json(newLead, { status: 201 });
   } catch (error) {
     console.error("Error creating lead:", error);
@@ -44,8 +38,6 @@ export async function POST(request: NextRequest) {
 
 // PATCH /api/leads?id={leadId} - Update a lead status
 export async function PATCH(request: NextRequest) {
-  // In a real app, you would check authentication here
-
   try {
     const searchParams = request.nextUrl.searchParams;
     const id = searchParams.get("id");

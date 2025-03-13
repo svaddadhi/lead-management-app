@@ -13,7 +13,6 @@ export default function LeadList() {
   const [error, setError] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("ALL");
 
-  // Fetch leads on component mount
   useEffect(() => {
     fetchLeads();
   }, []);
@@ -52,7 +51,6 @@ export default function LeadList() {
         throw new Error("Failed to update lead status");
       }
 
-      // Update the local state with the updated lead
       const updatedLead = await response.json();
       setLeads((prevLeads) =>
         prevLeads.map((lead) => (lead.id === id ? updatedLead : lead))
@@ -63,13 +61,11 @@ export default function LeadList() {
     }
   };
 
-  // Filter leads based on selected status
   const filteredLeads =
     statusFilter === "ALL"
       ? leads
       : leads.filter((lead) => lead.status === statusFilter);
 
-  // Count leads by status for the status tabs
   const leadCounts = leads.reduce(
     (acc, lead) => {
       acc[lead.status] = (acc[lead.status] || 0) + 1;
@@ -151,7 +147,6 @@ export default function LeadList() {
 
   return (
     <div>
-      {/* Status filter tabs */}
       <div className="mb-6 border-b border-gray-200">
         <nav className="-mb-px flex overflow-x-auto" aria-label="Tabs">
           {(
@@ -192,7 +187,6 @@ export default function LeadList() {
         </nav>
       </div>
 
-      {/* Leads list */}
       <div>
         {filteredLeads.length === 0 ? (
           <div className="bg-white shadow rounded-lg p-8 text-center">

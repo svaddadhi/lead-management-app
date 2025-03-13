@@ -78,7 +78,7 @@ yarn dev
 
 ## Authentication
 
-This project uses a simple authentication mechanism for demo purposes. In a production environment, you would want to implement a more robust solution like NextAuth.js.
+This project uses a simple authentication mechanism for demo purposes. In a production environment, we would implement a more robust solution like NextAuth.js.
 
 ## Future Improvements
 

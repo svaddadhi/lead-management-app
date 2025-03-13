@@ -107,7 +107,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div className={`${isMobileMenuOpen ? "block" : "hidden"} sm:hidden`}>
         <div className="pt-2 pb-3 space-y-1">
           <Link

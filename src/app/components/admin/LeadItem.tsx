@@ -88,7 +88,6 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
         </div>
       </div>
 
-      {/* Expanded details */}
       {expanded && (
         <>
           <div className="border-t border-gray-200 px-4 py-5 sm:px-6">

@@ -28,7 +28,6 @@ export default function LeadForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error for this field if it exists
     if (errors[name]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -44,7 +43,6 @@ export default function LeadForm() {
       visasOfInterest: selected as VisaType[],
     }));
 
-    // Clear error for this field if it exists
     if (errors.visasOfInterest) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -57,7 +55,6 @@ export default function LeadForm() {
   const handleFileChange = (file: File | undefined) => {
     setFormData((prev) => ({ ...prev, resume: file }));
 
-    // Clear error for this field if it exists
     if (errors.resume) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -70,7 +67,6 @@ export default function LeadForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate form data
     const validationErrors = validateLeadForm(formData);
     setErrors(validationErrors);
 
@@ -81,7 +77,6 @@ export default function LeadForm() {
     setIsLoading(true);
 
     try {
-      // Submit the form data
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
@@ -94,7 +89,6 @@ export default function LeadForm() {
         throw new Error("Failed to submit lead");
       }
 
-      // Reset form and show success message
       setFormData({
         firstName: "",
         lastName: "",
@@ -114,7 +108,6 @@ export default function LeadForm() {
     }
   };
 
-  // Show success message if form was submitted successfully
   if (isSubmitted) {
     return (
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">

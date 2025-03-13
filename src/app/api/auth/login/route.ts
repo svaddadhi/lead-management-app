@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // In a real application, you would set a session cookie here
+    // In a real application, we would set a session cookie here
     // For now, we'll just return the user object
     return NextResponse.json({ user });
   } catch (error) {
