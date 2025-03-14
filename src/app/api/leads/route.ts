@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  createLead,
-  getAllLeads,
-  updateLeadStatus,
-  getLeadById,
-} from "@/mock/leads";
+import { createLead, getAllLeads, updateLeadStatus } from "@/mock/leads";
 import { LeadStatus } from "@/lib/types";
 
 // GET /api/leads - Get all leads
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const leads = getAllLeads();
     return NextResponse.json(leads);

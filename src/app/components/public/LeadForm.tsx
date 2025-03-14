@@ -2,12 +2,10 @@
 
 import React, { useState } from "react";
 import FormField from "@/app/components/ui/FormField";
-import MultiSelect from "@/app/components/ui/MultiSelect";
 import FileUpload from "@/app/components/ui/FileUploader";
 import Button from "@/app/components/ui/Button";
 import { LeadFormData, VISA_OPTIONS, VisaType } from "@/lib/types";
 import { validateLeadForm, isFormValid } from "@/lib/validation";
-import Image from "next/image";
 
 export default function LeadForm() {
   const [formData, setFormData] = useState<Partial<LeadFormData>>({

@@ -1,4 +1,4 @@
-import { LeadFormData, VisaType } from "./types";
+import { LeadFormData } from "./types";
 
 type ValidationError = {
   [K in keyof LeadFormData]?: string;
