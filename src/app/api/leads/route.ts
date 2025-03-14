@@ -3,7 +3,7 @@ import { createLead, getAllLeads, updateLeadStatus } from "@/mock/leads";
 import { LeadStatus } from "@/lib/types";
 
 // GET /api/leads - Get all leads
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     const leads = getAllLeads();
     return NextResponse.json(leads);
