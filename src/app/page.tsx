@@ -29,92 +29,27 @@ export default function Home() {
                   </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <span className="text-green-500 mr-2 font-bold">✓</span>
                       <span>H-1B Visas for Specialized Workers</span>
                     </li>
                     <li className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <span className="text-green-500 mr-2 font-bold">✓</span>
                       <span>L-1 Visas for Intracompany Transfers</span>
                     </li>
                     <li className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <span className="text-green-500 mr-2 font-bold">✓</span>
                       <span>
                         O-1 Visas for Individuals with Extraordinary Ability
                       </span>
                     </li>
                     <li className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <span className="text-green-500 mr-2 font-bold">✓</span>
                       <span>
                         EB-1, EB-2, and EB-3 Employment-Based Green Cards
                       </span>
                     </li>
                     <li className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-green-500 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <span className="text-green-500 mr-2 font-bold">✓</span>
                       <span>EB-5 Investor Visas</span>
                     </li>
                   </ul>
