@@ -54,10 +54,6 @@ export default function FileUpload({
     }
   };
 
-  const handleButtonClick = () => {
-    inputRef.current?.click();
-  };
-
   const handleRemoveFile = () => {
     setSelectedFile(undefined);
     onChange(undefined);
@@ -68,10 +64,10 @@ export default function FileUpload({
   };
 
   const containerClasses = `
-    mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md
+    mt-1 border-2 border-dashed rounded-md p-4
     ${
       dragActive
-        ? "border-blue-500 bg-blue-50"
+        ? "border-gray-400 bg-gray-50"
         : error
         ? "border-red-300"
         : "border-gray-300"
@@ -80,14 +76,16 @@ export default function FileUpload({
   `;
 
   return (
-    <div className="mb-4">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-1"
-      >
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
+    <div>
+      {label && (
+        <label
+          htmlFor={id}
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+      )}
 
       <div
         className={containerClasses}
@@ -96,27 +94,27 @@ export default function FileUpload({
         onDragLeave={handleDrag}
         onDrop={handleDrop}
       >
-        <div className="space-y-1 text-center">
+        <div className="text-center">
           {!selectedFile ? (
             <>
               <svg
-                className="mx-auto h-12 w-12 text-gray-400"
+                className="mx-auto h-10 w-10 text-gray-400"
                 stroke="currentColor"
                 fill="none"
-                viewBox="0 0 48 48"
+                viewBox="0 0 24 24"
                 aria-hidden="true"
               >
                 <path
-                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                  strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <div className="flex text-sm text-gray-600">
+              <div className="flex justify-center mt-2">
                 <label
                   htmlFor={id}
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  className="relative cursor-pointer rounded-md font-medium text-gray-600 hover:text-gray-700 focus-within:outline-none"
                 >
                   <span>Upload a file</span>
                   <input
@@ -129,15 +127,13 @@ export default function FileUpload({
                     accept={accept}
                   />
                 </label>
-                <p className="pl-1">or drag and drop</p>
+                <p className="pl-1 text-gray-500">or drag and drop</p>
               </div>
-              <p className="text-xs text-gray-500">
-                PDF or Word document up to 5MB
-              </p>
+              <p className="text-xs text-gray-500 mt-1">PDF or Word document</p>
             </>
           ) : (
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
+            <div>
+              <div className="flex items-center justify-center">
                 <svg
                   className="h-8 w-8 text-gray-500"
                   fill="currentColor"
@@ -150,18 +146,18 @@ export default function FileUpload({
                   />
                 </svg>
               </div>
-              <p className="text-sm font-medium text-gray-900 truncate mb-1">
+              <p className="text-sm font-medium text-gray-900 truncate mt-2">
                 {selectedFile.name}
               </p>
-              <p className="text-xs text-gray-500 mb-3">
+              <p className="text-xs text-gray-500 mb-2 mt-1">
                 {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
               </p>
               <button
                 type="button"
                 onClick={handleRemoveFile}
-                className="inline-flex items-center px-2.5 py-1.5 border border-red-300 text-xs font-medium rounded text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
               >
-                Remove file
+                Remove
               </button>
             </div>
           )}

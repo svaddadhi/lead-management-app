@@ -63,103 +63,107 @@ export default function LoginPage() {
 
   if (isCheckingSession) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+    <div className="min-h-screen flex">
+      {/* Left Brand Section */}
+      <div className="brand-bg p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
+        <div className="max-w-md mx-auto">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">almā</h1>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-6 mb-8 leading-tight">
+            Admin Login
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Admin access for lead management
-          </p>
-        </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-8 space-y-6"
-          suppressHydrationWarning
-        >
-          {error && (
-            <div className="rounded-md bg-red-50 p-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-5 w-5 text-red-400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">{error}</h3>
+          {/* Decorative circles */}
+          <div className="relative h-40 w-40">
+            <div className="absolute top-0 left-0 h-24 w-24 rounded-full brand-bg-dark"></div>
+            <div className="absolute top-12 left-12 h-24 w-24 rounded-full brand-bg-dark opacity-80"></div>
+            <div className="absolute top-24 left-24 h-24 w-24 rounded-full brand-bg-dark opacity-60"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Login Form Section */}
+      <div className="bg-white md:w-1/2 p-8 md:p-12 flex items-center justify-center">
+        <div className="w-full max-w-md">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            suppressHydrationWarning
+          >
+            {error && (
+              <div className="rounded-md bg-red-50 p-4">
+                <div className="flex">
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">
+                      {error}
+                    </h3>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <div className="rounded-md shadow-sm -space-y-px">
+            <div className="space-y-4">
+              <div>
+                <label
+                  htmlFor="email-address"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Email address
+                </label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="form-input"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="form-input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <Button type="submit" isLoading={isLoading} fullWidth>
+                Sign in
+              </Button>
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+
+            <div className="text-sm text-center mt-4">
+              <p className="text-gray-600">
+                For demo: use{" "}
+                <span className="font-semibold">admin@example.com</span> and{" "}
+                <span className="font-semibold">password123</span>
+              </p>
             </div>
-          </div>
-
-          <div>
-            <Button type="submit" isLoading={isLoading} fullWidth>
-              Sign in
-            </Button>
-          </div>
-
-          <div className="text-sm text-center mt-4">
-            <p className="text-gray-600">
-              For demo: use{" "}
-              <span className="font-semibold">admin@example.com</span> and{" "}
-              <span className="font-semibold">password123</span>
-            </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

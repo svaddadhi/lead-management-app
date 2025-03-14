@@ -8,28 +8,28 @@ interface StatusBadgeProps {
 export default function StatusBadge({ status }: StatusBadgeProps) {
   const statusConfig = {
     PENDING: {
-      color: "bg-yellow-100 text-yellow-800",
       label: "Pending",
+      className: "text-yellow-800 bg-yellow-50 border border-yellow-200",
     },
     REACHED_OUT: {
-      color: "bg-blue-100 text-blue-800",
       label: "Reached Out",
+      className: "text-blue-800 bg-blue-50 border border-blue-200",
     },
     QUALIFIED: {
-      color: "bg-green-100 text-green-800",
       label: "Qualified",
+      className: "text-green-800 bg-green-50 border border-green-200",
     },
     NOT_QUALIFIED: {
-      color: "bg-gray-100 text-gray-800",
       label: "Not Qualified",
+      className: "text-gray-800 bg-gray-50 border border-gray-200",
     },
   };
 
-  const { color, label } = statusConfig[status];
+  const { label, className } = statusConfig[status];
 
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${color}`}
+      className={`text-sm font-medium px-2 py-1 rounded-md inline-block w-32 text-center ${className}`}
     >
       {label}
     </span>

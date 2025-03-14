@@ -17,10 +17,10 @@ describe("Button Component", () => {
 
   test("applies variant styles correctly", () => {
     const { rerender } = render(<Button variant="primary">Primary</Button>);
-    expect(screen.getByText("Primary")).toHaveClass("bg-blue-600");
+    expect(screen.getByText("Primary")).toHaveClass("bg-black");
 
     rerender(<Button variant="secondary">Secondary</Button>);
-    expect(screen.getByText("Secondary")).toHaveClass("bg-gray-100");
+    expect(screen.getByText("Secondary")).toHaveClass("bg-gray-200");
 
     rerender(<Button variant="outline">Outline</Button>);
     expect(screen.getByText("Outline")).toHaveClass("border-gray-300");

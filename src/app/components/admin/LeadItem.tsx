@@ -29,9 +29,9 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg overflow-hidden mb-4 border border-gray-200">
-      {/* Lead summary */}
-      <div className="px-4 py-4 sm:px-6 flex flex-wrap items-center justify-between">
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-4">
+      {/* Lead summary row */}
+      <div className="px-4 py-4 flex flex-wrap items-center justify-between">
         <div className="flex-1 min-w-0 mr-4">
           <h3 className="text-lg font-medium text-gray-900 truncate">
             {lead.firstName} {lead.lastName}
@@ -68,7 +68,7 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
           <StatusBadge status={lead.status} />
           <button
             onClick={() => setExpanded(!expanded)}
-            className="ml-3 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+            className="ml-3 text-gray-600 hover:text-gray-800 text-sm font-medium flex items-center"
           >
             {expanded ? "Hide details" : "View details"}
             <svg
@@ -90,7 +90,7 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
 
       {expanded && (
         <>
-          <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+          <div className="border-t border-gray-200 px-4 py-5">
             <dl className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">
               <div className="sm:col-span-1">
                 <dt className="text-sm font-medium text-gray-500">
@@ -101,7 +101,7 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
                     href={lead.linkedinProfile}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-gray-600 hover:text-gray-800"
                   >
                     {lead.linkedinProfile}
                   </a>
@@ -117,48 +117,12 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
                     {lead.visasOfInterest.map((visa) => (
                       <span
                         key={visa}
-                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
+                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
                       >
                         {visa}
                       </span>
                     ))}
                   </div>
-                </dd>
-              </div>
-
-              {lead.resumeUrl && (
-                <div className="sm:col-span-1">
-                  <dt className="text-sm font-medium text-gray-500">Resume</dt>
-                  <dd className="mt-1 text-sm text-gray-900">
-                    <a
-                      href={lead.resumeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 hover:text-blue-800"
-                    >
-                      <svg
-                        className="h-5 w-5 mr-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Download Resume
-                    </a>
-                  </dd>
-                </div>
-              )}
-
-              <div className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  Last Updated
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900">
-                  {formatDate(lead.updatedAt)}
                 </dd>
               </div>
 
@@ -176,7 +140,7 @@ export default function LeadItem({ lead, onStatusChange }: LeadItemProps) {
           </div>
 
           {/* Status update actions */}
-          <div className="border-t border-gray-200 px-4 py-4 sm:px-6 bg-gray-50">
+          <div className="border-t border-gray-200 px-4 py-4 bg-gray-50">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-sm font-medium text-gray-500">
                 Update status:

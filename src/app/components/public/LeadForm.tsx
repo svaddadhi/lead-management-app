@@ -7,6 +7,7 @@ import FileUpload from "@/app/components/ui/FileUploader";
 import Button from "@/app/components/ui/Button";
 import { LeadFormData, VISA_OPTIONS, VisaType } from "@/lib/types";
 import { validateLeadForm, isFormValid } from "@/lib/validation";
+import Image from "next/image";
 
 export default function LeadForm() {
   const [formData, setFormData] = useState<Partial<LeadFormData>>({
@@ -110,57 +111,75 @@ export default function LeadForm() {
 
   if (isSubmitted) {
     return (
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="py-8 px-6">
-          <div className="flex items-center justify-center mb-6">
-            <div className="rounded-full bg-green-100 p-3">
-              <svg
-                className="h-8 w-8 text-green-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-          </div>
-          <h2 className="text-center text-2xl font-bold text-gray-900 mb-2">
-            Thank You!
-          </h2>
-          <p className="text-center text-gray-600 mb-6">
-            Your information has been successfully submitted. Our team will
-            contact you shortly.
-          </p>
-          <div className="flex justify-center">
-            <Button onClick={() => setIsSubmitted(false)} variant="secondary">
-              Submit Another Lead
-            </Button>
+      <div className="text-center py-8">
+        <div className="flex justify-center mb-6">
+          <div className="h-16 w-16 bg-gray-100 rounded-lg flex items-center justify-center">
+            <svg
+              className="h-8 w-8 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
           </div>
         </div>
+        <h2 className="text-xl font-bold mb-2">Thank You</h2>
+        <p className="text-gray-600 mb-6">
+          Your information was submitted to our team of immigration
+          <br />
+          attorneys. Expect an email from hello@tryalma.ai.
+        </p>
+        <Button
+          onClick={() => (window.location.href = "/")}
+          variant="secondary"
+        >
+          Go Back to Homepage
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-      <div className="py-6 px-6 bg-blue-600">
-        <h2 className="text-xl font-bold text-white">
-          Submit Your Information
+    <div>
+      <div className="mb-8 text-center md:text-left">
+        <div className="flex justify-center md:justify-start mb-4">
+          <div className="h-16 w-16 bg-gray-100 rounded-lg flex items-center justify-center">
+            <svg
+              className="h-8 w-8 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+          </div>
+        </div>
+        <h2 className="text-xl font-bold mb-2">
+          Want to understand your visa options?
         </h2>
-        <p className="text-blue-100 text-sm mt-1">
-          Please fill out the form below to get started with your visa process.
+        <p className="text-gray-600">
+          Submit the form below and our team of experienced attorneys will
+          <br />
+          review your information and send a preliminary assessment of your
+          <br />
+          case based on your goals.
         </p>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="py-6 px-6"
+        className="space-y-5"
         suppressHydrationWarning
       >
         {errors.form && (
@@ -169,7 +188,7 @@ export default function LeadForm() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <FormField
             id="firstName"
             label="First Name"
@@ -201,7 +220,7 @@ export default function LeadForm() {
 
         <FormField
           id="linkedinProfile"
-          label="LinkedIn Profile"
+          label="LinkedIn / Personal Website URL"
           placeholder="https://linkedin.com/in/yourprofile"
           value={formData.linkedinProfile || ""}
           onChange={handleInputChange}
@@ -209,38 +228,68 @@ export default function LeadForm() {
           required
         />
 
-        <MultiSelect
-          id="visasOfInterest"
-          label="Visas of Interest"
-          options={VISA_OPTIONS}
-          selected={formData.visasOfInterest || []}
-          onChange={handleVisaSelect}
-          error={errors.visasOfInterest}
-          required
-        />
+        <div className="mb-6">
+          <h3 className="font-medium mb-4">Visa categories of interest?</h3>
+          <div className="space-y-3">
+            {VISA_OPTIONS.map((visa) => (
+              <div key={visa} className="flex items-center">
+                <input
+                  id={`visa-${visa}`}
+                  type="checkbox"
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                  checked={formData.visasOfInterest?.includes(visa) || false}
+                  onChange={() => {
+                    const current = formData.visasOfInterest || [];
+                    const newVisas = current.includes(visa)
+                      ? current.filter((v) => v !== visa)
+                      : [...current, visa];
 
-        <FileUpload
-          id="resume"
-          label="Resume/CV"
-          onChange={handleFileChange}
-          error={errors.resume}
-          required
-        />
-
-        <FormField
-          id="additionalInfo"
-          label="Additional Information"
-          value={formData.additionalInfo || ""}
-          onChange={handleInputChange}
-          multiline
-          rows={4}
-        />
-
-        <div className="mt-6">
-          <Button type="submit" isLoading={isLoading} fullWidth>
-            Submit Information
-          </Button>
+                    handleVisaSelect(newVisas);
+                  }}
+                />
+                <label
+                  htmlFor={`visa-${visa}`}
+                  className="ml-2 text-sm text-gray-700"
+                >
+                  {visa}
+                </label>
+              </div>
+            ))}
+            {errors.visasOfInterest && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.visasOfInterest}
+              </p>
+            )}
+          </div>
         </div>
+
+        <div className="mb-6">
+          <h3 className="font-medium mb-2">Resume/CV</h3>
+          <FileUpload
+            id="resume"
+            label=""
+            onChange={handleFileChange}
+            error={errors.resume}
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <h3 className="font-medium mb-2">How can we help you?</h3>
+          <textarea
+            id="additionalInfo"
+            name="additionalInfo"
+            rows={4}
+            className="form-input"
+            placeholder="Tell us about your background and goals..."
+            value={formData.additionalInfo || ""}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+
+        <Button type="submit" isLoading={isLoading} fullWidth>
+          Submit
+        </Button>
       </form>
     </div>
   );

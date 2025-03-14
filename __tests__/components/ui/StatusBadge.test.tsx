@@ -25,11 +25,11 @@ describe("StatusBadge Component", () => {
 
   test("applies correct color classes based on status", () => {
     const { rerender } = render(<StatusBadge status="PENDING" />);
-    expect(screen.getByText("Pending")).toHaveClass("bg-yellow-100");
+    expect(screen.getByText("Pending")).toHaveClass("bg-yellow-50");
     expect(screen.getByText("Pending")).toHaveClass("text-yellow-800");
 
     rerender(<StatusBadge status="QUALIFIED" />);
-    expect(screen.getByText("Qualified")).toHaveClass("bg-green-100");
+    expect(screen.getByText("Qualified")).toHaveClass("bg-green-50");
     expect(screen.getByText("Qualified")).toHaveClass("text-green-800");
   });
 });

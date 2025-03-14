@@ -32,6 +32,7 @@ export interface Lead {
   visasOfInterest: VisaType[];
   resumeUrl?: string;
   additionalInfo?: string;
+  summary?: string;
   status: LeadStatus;
   createdAt: Date;
   updatedAt: Date;
