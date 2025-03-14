@@ -158,7 +158,11 @@ export default function LeadForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="py-6 px-6">
+      <form
+        onSubmit={handleSubmit}
+        className="py-6 px-6"
+        suppressHydrationWarning
+      >
         {errors.form && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-sm text-red-600">{errors.form}</p>

@@ -1,6 +1,3 @@
-// This is a mock authentication system
-// In a real app, you'd use NextAuth.js or a similar authentication solution
-
 export type User = {
   id: string;
   email: string;
@@ -8,7 +5,6 @@ export type User = {
   role: "admin" | "user";
 };
 
-// Mock admin user
 const ADMIN_USER: User = {
   id: "1",
   email: "admin@example.com",
@@ -22,7 +18,6 @@ const VALID_CREDENTIALS = {
   password: "password123",
 };
 
-// Check if credentials are valid
 export async function validateCredentials(
   email: string,
   password: string
@@ -38,11 +33,13 @@ export async function validateCredentials(
 
 // Mock session checking
 export async function getSession(): Promise<{ user: User } | null> {
-  // In a real app, this would check cookies or session storage
-  // For demo purposes, we'll simulate being logged in
+  // Always return null during SSR
+  if (typeof window === "undefined") {
+    return null;
+  }
 
-  const sessionStr =
-    typeof window !== "undefined" ? localStorage.getItem("user-session") : null;
+  // Only run this code on the client
+  const sessionStr = localStorage.getItem("user-session");
 
   if (sessionStr) {
     try {
@@ -55,14 +52,12 @@ export async function getSession(): Promise<{ user: User } | null> {
   return null;
 }
 
-// Create a session
 export async function createSession(user: User): Promise<void> {
   if (typeof window !== "undefined") {
     localStorage.setItem("user-session", JSON.stringify(user));
   }
 }
 
-// Destroy the session
 export async function destroySession(): Promise<void> {
   if (typeof window !== "undefined") {
     localStorage.removeItem("user-session");

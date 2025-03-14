@@ -14,10 +14,8 @@ export default function AdminLayout({
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if user is authenticated
   useEffect(() => {
     const checkAuth = async () => {
-      // Skip auth check on login page
       if (pathname === "/admin/login") {
         setIsLoading(false);
         return;
@@ -26,7 +24,6 @@ export default function AdminLayout({
       const session = await getSession();
 
       if (!session) {
-        // Redirect to login if not authenticated
         router.push("/admin/login");
       } else {
         setIsLoading(false);
@@ -36,12 +33,10 @@ export default function AdminLayout({
     checkAuth();
   }, [pathname, router]);
 
-  // If on login page, don't show admin layout
   if (pathname === "/admin/login") {
     return <>{children}</>;
   }
 
-  // Show loading state while checking auth
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">

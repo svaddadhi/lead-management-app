@@ -57,6 +57,8 @@ export default function FormField({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          required={required}
+          suppressHydrationWarning
         />
       ) : (
         <input
@@ -67,6 +69,8 @@ export default function FormField({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          required={required}
+          suppressHydrationWarning
         />
       )}
 

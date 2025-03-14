@@ -20,6 +20,7 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
     "@eslint/eslintrc": "^3",
+    "@swc/jest": "^0.2.37",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -27,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/testing-library__jest-dom": "^5.14.9",
     "babel-jest": "^29.7.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
@@ -35,15 +37,5 @@
     "tailwindcss": "^4",
     "ts-jest": "^29.2.6",
     "typescript": "^5"
-  },
-"jest": {
-  "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["<rootDir>/jest.setup.ts"],
-  "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/src/$1"
-  },
-  "transform": {
-      "^.+\\.(ts|tsx)$": "babel-jest"
-    }
   }
 }

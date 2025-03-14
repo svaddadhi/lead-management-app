@@ -13,7 +13,6 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckingSession, setIsCheckingSession] = useState(true);
 
-  // Check if user is already logged in
   useEffect(() => {
     const checkSession = async () => {
       const session = await getSession();
@@ -33,8 +32,6 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // Mock credentials for demo purposes (in a real app, this would be an API call)
-      // Use: admin@example.com / password123
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -49,10 +46,8 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      // Create session
       await createSession(data.user);
 
-      // Redirect to admin dashboard
       router.push("/admin");
     } catch (err) {
       console.error("Login error:", err);
@@ -86,7 +81,11 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 space-y-6"
+          suppressHydrationWarning
+        >
           {error && (
             <div className="rounded-md bg-red-50 p-4">
               <div className="flex">
