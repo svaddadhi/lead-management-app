@@ -80,6 +80,80 @@ yarn dev
 
 This project uses a simple authentication mechanism for demo purposes. In a production environment, we would implement a more robust solution like NextAuth.js.
 
+## Testing
+
+This project uses Jest and React Testing Library for unit and component testing.
+
+### Running Tests
+
+To run all tests:
+
+```bash
+npm test
+```
+
+To run tests in watch mode (tests will automatically re-run when files change):
+
+```bash
+npm test -- --watch
+```
+
+To run a specific test file:
+
+```bash
+npm test -- __tests__/components/ui/Button.test.tsx
+```
+
+### Test Structure
+
+- `__tests__/`: Contains all test files organized to mirror the source code
+  - `components/`: Tests for React components
+  - `lib/`: Tests for utility functions
+  - `mock/`: Tests for mock data and APIs
+
+### Testing Configuration
+
+The testing setup includes:
+
+- Jest as the test runner and assertion library
+- React Testing Library for rendering and interacting with components
+- Custom configuration for TypeScript and JSX support
+- Jest mocks for Next.js features
+
+### Writing Tests
+
+Example of a component test:
+
+```tsx
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import Button from "@/app/components/ui/Button";
+
+describe("Button Component", () => {
+  test("renders button with children", () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByText("Click me")).toBeInTheDocument();
+  });
+
+  test("calls onClick when clicked", () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    fireEvent.click(screen.getByText("Click me"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+### Test Coverage
+
+To run tests with coverage report:
+
+```bash
+npm test -- --coverage
+```
+
+This will generate a coverage report showing which parts of your code are covered by tests.
+
 ## Future Improvements
 
 - Implement a more robust authentication system
